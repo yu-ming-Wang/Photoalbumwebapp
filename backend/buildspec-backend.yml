@@ -17,20 +17,20 @@ phases:
       # 打包 image-indexing-lambda
       # -------------------------------
       - echo "Packaging image-indexing-lambda"
-      - cd backend/image-indexing-lambda
-      - zip -r ../../../image-indexing-lambda.zip .
-      - cd ../..
+      - cd image-indexing-lambda
+      - zip -r ../image-indexing-lambda.zip .
+      - cd ..
 
       # -------------------------------
       # 打包 search-lambda
       # -------------------------------
       - echo "Packaging search-lambda"
-      - cd backend/search-lambda
-      - zip -r ../../../search-lambda.zip .
-      - cd ../..
+      - cd search-lambda
+      - zip -r ../search-lambda.zip .
+      - cd ..
 
       # -------------------------------
-      # 更新 Lambda 1
+      # 更新 Lambda
       # -------------------------------
       - echo "Updating image-indexing-lambda..."
       - >
@@ -38,9 +38,6 @@ phases:
         --function-name image-indexing-lambda
         --zip-file fileb://image-indexing-lambda.zip
 
-      # -------------------------------
-      # 更新 Lambda 2
-      # -------------------------------
       - echo "Updating search-lambda..."
       - >
         aws lambda update-function-code
