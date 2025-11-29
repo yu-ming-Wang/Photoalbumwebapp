@@ -12,19 +12,22 @@ phases:
       - echo "Installing frontend dependencies..."
       - cd frontend
       - npm ci || npm install
+      - cd ..   # <<< 回到 repo root
 
   build:
     commands:
       - echo "Building frontend..."
       - cd frontend
       - npm run build
+      - cd ..   # <<< 回到 repo root
 
   post_build:
     commands:
       - echo "Deploying to S3..."
       - cd frontend
       - aws s3 sync dist/ s3://$FRONTEND_BUCKET/ --delete
+      - cd ..   # <<< 回到 repo root
 
 artifacts:
   files:
-    - '**/*'
+    - "**/*"
