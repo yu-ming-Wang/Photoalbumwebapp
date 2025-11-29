@@ -18,16 +18,16 @@ phases:
       # -------------------------------
       - echo "Packaging image-indexing-lambda"
       - cd backend/image-indexing-lambda
-      - zip -r ../../image-indexing-lambda.zip .
-      - cd ../../
+      - zip -r ../../../image-indexing-lambda.zip .
+      - cd ../..
 
       # -------------------------------
       # 打包 search-lambda
       # -------------------------------
       - echo "Packaging search-lambda"
       - cd backend/search-lambda
-      - zip -r ../../search-lambda.zip .
-      - cd ../../
+      - zip -r ../../../search-lambda.zip .
+      - cd ../..
 
       # -------------------------------
       # 更新 Lambda
