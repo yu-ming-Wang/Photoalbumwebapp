@@ -9,7 +9,7 @@ phases:
 
   pre_build:
     commands:
-      - echo "No separate dependencies needed for Lambda"
+      - echo "Preparing Lambda build..."
 
   build:
     commands:
@@ -18,7 +18,7 @@ phases:
       # -------------------------------
       - echo "Packaging image-indexing-lambda"
       - cd backend/image-indexing-lambda
-      - zip -r ../../image-indexing-lambda.zip .
+      - zip -r ../../../image-indexing-lambda.zip .
       - cd ../../
 
       # -------------------------------
@@ -26,20 +26,23 @@ phases:
       # -------------------------------
       - echo "Packaging search-lambda"
       - cd backend/search-lambda
-      - zip -r ../../search-lambda.zip .
+      - zip -r ../../../search-lambda.zip .
       - cd ../../
 
       # -------------------------------
-      # 更新 Lambda
+      # 更新 Lambda（使用 root zip 路徑）
       # -------------------------------
-      - echo "Updating image-indexing-lambda..."
-      - >
-        aws lambda update-function-code
-        --function-name image-indexing-lambda
-        --zip-file fileb://backend/image-indexing-lambda.zip
+      - echo "Updating image-indexing-lambda"
+      - aws lambda update-function-code \
+          --function-name image-indexing-lambda \
+          --zip-file fileb://image-indexing-lambda.zip
 
-      - echo "Updating search-lambda..."
-      - >
-        aws lambda update-function-code
-        --function-name search-lambda
-        --zip-file fileb://backend/search-lambda.zip
+      - echo "Updating search-lambda"
+      - aws lambda update-function-code \
+          --function-name search-lambda \
+          --zip-file fileb://search-lambda.zip
+
+artifacts:
+  files:
+    - image-indexing-lambda.zip
+    - search-lambda.zip
