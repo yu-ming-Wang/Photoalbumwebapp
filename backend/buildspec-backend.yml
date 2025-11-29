@@ -30,19 +30,19 @@ phases:
       - cd ../..
 
       # -------------------------------
-      # 更新 Lambda
+      # 更新 Lambda 1
       # -------------------------------
       - echo "Updating image-indexing-lambda..."
-      - aws lambda update-function-code \
-          --function-name image-indexing-lambda \
-          --zip-file fileb://image-indexing-lambda.zip
+      - >
+        aws lambda update-function-code
+        --function-name image-indexing-lambda
+        --zip-file fileb://image-indexing-lambda.zip
 
+      # -------------------------------
+      # 更新 Lambda 2
+      # -------------------------------
       - echo "Updating search-lambda..."
-      - aws lambda update-function-code \
-          --function-name search-lambda \
-          --zip-file fileb://search-lambda.zip
-
-artifacts:
-  files:
-    - image-indexing-lambda.zip
-    - search-lambda.zip
+      - >
+        aws lambda update-function-code
+        --function-name search-lambda
+        --zip-file fileb://search-lambda.zip
