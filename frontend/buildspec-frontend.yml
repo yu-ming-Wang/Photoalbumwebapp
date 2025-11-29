@@ -1,0 +1,30 @@
+version: 0.2
+
+env:
+  variables:
+    FRONTEND_BUCKET: "cc-hw3-website-taiwan-no1"
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 22
+    commands:
+      - echo "Installing frontend dependencies..."
+      - cd frontend
+      - npm ci || npm install
+
+  build:
+    commands:
+      - echo "Building frontend..."
+      - cd frontend
+      - npm run build
+
+  post_build:
+    commands:
+      - echo "Deploying to S3..."
+      - cd frontend
+      - aws s3 sync dist/ s3://$FRONTEND_BUCKET/ --delete
+
+artifacts:
+  files:
+    - '**/*'
