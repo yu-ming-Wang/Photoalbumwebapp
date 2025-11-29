@@ -18,7 +18,6 @@ phases:
       # -------------------------------
       - echo "Packaging image-indexing-lambda"
       - cd backend/image-indexing-lambda
-      - rm -f function.zip       # 防呆（忘記刪 repo 也能保護）
       - zip -r ../../image-indexing-lambda.zip .
       - cd ../../
 
