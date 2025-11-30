@@ -18,6 +18,7 @@ phases:
       # -------------------------------
       - echo "Packaging image-indexing-lambda"
       - cd backend/image-indexing-lambda
+      - npm install
       - zip -r ../../image-indexing-lambda.zip .
       - cd ../../
 
