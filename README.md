@@ -13,6 +13,7 @@ aws cloudformation deploy \
   --template-file cloudformation.yml \
   --stack-name cc-hw3smart-photo-album \
   --capabilities CAPABILITY_NAMED_IAM \
+  --profile jonathan
 
 # Get the output
 aws cloudformation describe-stacks \
@@ -22,7 +23,7 @@ aws cloudformation describe-stacks \
   --output table
 ```
 
-It should show this:
+It should show something like this:
 
 ```bash
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -35,4 +36,12 @@ It should show this:
 |  Public website URL for the photo album frontend |  FrontendWebsiteURL |  http://cc-hw3smart-photo-album-nyu-tandon-csgy-cc-hw3-frontend.s3-website-us-east-1.amazonaws.com  |
 |  S3 bucket storing original photos               |  PhotosBucketName   |  cc-hw3smart-photo-album-nyu-tandon-csgy-cc-hw3-photos                                              |
 +--------------------------------------------------+---------------------+-----------------------------------------------------------------------------------------------------+
+```
+
+After testing it, you can use this to delete it:
+
+```bash
+aws cloudformation delete-stack \
+  --stack-name cc-hw3smart-photo-album \
+  --profile jonathan
 ```
